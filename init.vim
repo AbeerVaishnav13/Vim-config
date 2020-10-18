@@ -19,7 +19,6 @@ set t_ut=
 set mouse=a
 
 let mapleader=" "
-let g:cur_dir_path = expand("%:p:h") . ''
 
 " Clear all registers
 command! WipeRegs let regs='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-*+"' | let i=0 | while (i < strlen(regs)) | exec 'let @'.regs[i].'=""' | let i=i+1 | endwhile | unlet regs
@@ -41,14 +40,15 @@ endif
 
 " Key bindings
 " For remapping keys to provide greater access
-inoremap <C-c> <Esc>
-vnoremap <C-c> <Esc>
 nnoremap <C-c> <Esc>
+vnoremap <C-c> <Esc>
 snoremap <C-c> <Esc>
-inoremap <Esc> <C-c>
-vnoremap <Esc> <C-c>
+inoremap <C-c> <Esc>
 nnoremap <Esc> <C-c>
+vnoremap <Esc> <C-c>
 snoremap <Esc> <C-c>
+inoremap <Esc> <C-c>
+
 nnoremap S :%s//g<Left><Left>
 vnoremap S :s//g<Left><Left>
 nnoremap <leader>sp :set spell!<CR>
@@ -56,14 +56,31 @@ noremap ; :
 noremap : ;
 
 " Terminal
-noremap <leader>tt :vsp<CR>:term<CR>:vertical resize -25<CR>A
-tnoremap <C-q> <C-\><C-n>
+noremap <M-S-t> :vsp<CR>:term<CR>:vertical resize -25<CR>A
+tnoremap <M-q> <C-\><C-n>
+
+" Buffer manipulation
+function! BufDelOrQuit()
+	let s:num_buf = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
+	if s:num_buf > 1
+		:bd!
+	else
+		:q
+	endif
+endfunction
+
+nnoremap Q :call BufDelOrQuit()<CR>
 
 " Cursor navigation
 " All modes
 noremap u k
 noremap k l
 noremap U u
+
+" Tab manipulation
+" Normal mode
+nnoremap gk gt
+nnoremap gh gT
 
 " Indentation
 vnoremap <Tab> >gv
@@ -78,20 +95,14 @@ nnoremap <leader>hs :split<space>
 " Exit commands
 " All modes
 noremap W :w<CR>
-noremap Q :q<CR>
 noremap SQ :q!<CR>
-
-" Tab manipulation
-" Normal mode
-nnoremap gk gt
-nnoremap gh gT
 
 " Making split window easier
 " All modes
-noremap <leader>u <C-w>k
-noremap <leader>j <C-w>j
-noremap <leader>k <C-w>l
-noremap <leader>h <C-w>h
+noremap <C-w>u <C-w>k
+noremap <C-w>j <C-w>j
+noremap <C-w>k <C-w>l
+noremap <C-w>h <C-w>h
 noremap <C-]> <C-w>>
 noremap <C-[> <C-w><
 noremap <C-p> <C-w>+
