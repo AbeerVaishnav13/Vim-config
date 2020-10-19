@@ -107,9 +107,7 @@ noremap SQ :q!<CR>
 " Making split window easier
 " All modes
 noremap <C-w>u <C-w>k
-noremap <C-w>j <C-w>j
 noremap <C-w>k <C-w>l
-noremap <C-w>h <C-w>h
 noremap <C-]> <C-w>>
 noremap <C-[> <C-w><
 noremap <C-p> <C-w>+
