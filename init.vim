@@ -32,7 +32,7 @@ set wildmenu		" Shows multiple matches on a pop-up menu
 set background=dark
 
 " Edit this part for colorscheme
-
+colorscheme default
 
 if exists('+termguicolors')
 	let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
