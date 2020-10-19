@@ -17,6 +17,7 @@ set nowrap
 set t_Co=256
 set t_ut=
 set mouse=a
+set noshowmode
 
 let mapleader=" "
 
