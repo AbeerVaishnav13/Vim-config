@@ -56,7 +56,7 @@ noremap ; :
 noremap : ;
 
 " Terminal
-noremap <M-S-t> :vsp<CR>:term<CR>:vertical resize -25<CR>A
+noremap <M-t> :vsp<CR>:term<CR>:vertical resize -25<CR>A
 tnoremap <M-q> <C-\><C-n>
 
 " Buffer manipulation
@@ -70,6 +70,12 @@ function! BufDelOrQuit()
 endfunction
 
 nnoremap Q :call BufDelOrQuit()<CR>
+nnoremap J :bp<CR>
+nnoremap K :bn<CR>
+
+" Better search
+nnoremap n nzz
+nnoremap N Nzz
 
 " Cursor navigation
 " All modes
