@@ -35,8 +35,8 @@ set background=dark
 colorscheme default
 
 if exists('+termguicolors')
-	let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
 
 " Key bindings
@@ -62,17 +62,17 @@ tnoremap <M-q> <C-\><C-n>
 
 " Buffer manipulation
 function! BufDelOrQuit()
-	let s:num_buf = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
-	if s:num_buf > 1
-		:bd!
-	else
-		:q
-	endif
+  let s:num_buf = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
+  if s:num_buf > 1
+    :bd!
+  else
+    :q
+  endif
 endfunction
 
 nnoremap Q :call BufDelOrQuit()<CR>
-nnoremap J :bp<CR>
-nnoremap K :bn<CR>
+nnoremap <silent> J :bp<CR>
+nnoremap <silent> K :bn<CR>
 
 " Better search
 nnoremap n nzz
@@ -106,10 +106,36 @@ noremap SQ :q!<CR>
 
 " Making split window easier
 " All modes
-noremap <C-w>u <C-w>k
-noremap <C-w>k <C-w>l
-noremap <C-]> <C-w>>
-noremap <C-[> <C-w><
-noremap <C-p> <C-w>+
-noremap <C-o> <C-w>-
-noremap <leader>= <C-w>=
+noremap <M-u> <C-w>k
+noremap <M-k> <C-w>l
+noremap <M-j> <C-w>j
+noremap <M-h> <C-w>h
+noremap <M-]> <C-w>>
+noremap <M-[> <C-w><
+noremap <M-p> <C-w>+
+noremap <M-o> <C-w>-
+noremap <M-=> <C-w>=
+
+" Window orientation
+function! Halign()
+  if &filetype == ''
+    wincmd J
+    resize -10
+  else
+    wincmd K
+    resize +10
+  endif
+endfunction
+
+function! Valign()
+  if &filetype == ''
+    wincmd L
+    vertical resize -25
+  else
+    wincmd H
+    vertical resize +25
+  endif
+endfunction
+
+noremap <silent> <C-k> :call Valign()<CR>
+noremap <silent> <C-h> :call Halign()<CR>
