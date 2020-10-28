@@ -1,24 +1,52 @@
 " Basic config
+" Set relative line numbering
 set nu rnu
+
+" set tab length = 4 and other  indentation related stuff
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
-syntax on
-set encoding=utf8
-set nohlsearch
-set scrolloff=10
-set smartcase
 set smartindent
+
+" Syntax check: ON
+syntax on
+
+" file encoding
+set encoding=utf8
+
+" Highlight search keyword: OFF
+set nohlsearch
+
+" Set scroll offset
+set scrolloff=10
+
+" For proper letter case
+set smartcase
+
+" Disable error bells
 set noerrorbells
+
+" Natural window splits
 set splitright
+set splitbelow
+
+" Case sensitive search
 set incsearch
+
+" Line break: ON
 set linebreak
+
+" No text wrapping
 set nowrap
+
+" Set proper colors
 set t_Co=256
 set t_ut=
-set mouse=a
-set noshowmode
 
+" Enable mouse
+set mouse=a
+
+" Map leader key
 let mapleader=","
 
 " Clear all registers
@@ -29,6 +57,7 @@ set nocompatible	" Limit search to the project dir
 set path+=**		" Search within subdirectories of the project recursively
 set wildmenu		" Shows multiple matches on a pop-up menu
 
+" Use dark background
 set background=dark
 
 " Edit this part for colorscheme
@@ -40,7 +69,7 @@ if exists('+termguicolors')
 endif
 
 " Key bindings
-" For remapping keys to provide greater access
+" For remapping escape key to provide greater access
 nnoremap <C-c> <Esc>
 vnoremap <C-c> <Esc>
 snoremap <C-c> <Esc>
@@ -50,9 +79,14 @@ vnoremap <Esc> <C-c>
 snoremap <Esc> <C-c>
 inoremap <Esc> <C-c>
 
+" Remapping substituition for ease of access
 nnoremap S :%s//g<Left><Left>
 vnoremap S :s//g<Left><Left>
+
+" Spell command toggle
 nnoremap <leader>sp :set spell!<CR>
+
+" For ease of typing command
 noremap ; :
 noremap : ;
 
@@ -74,17 +108,17 @@ nnoremap Q :call BufDelOrQuit()<CR>
 nnoremap <silent> J :bp<CR>
 nnoremap <silent> K :bn<CR>
 
-" Better search
+" Better search positioning
 nnoremap n nzz
 nnoremap N Nzz
 
-" Cursor navigation
+" Cursor navigation (HJUK instead of HJKL)
 " All modes
 noremap u k
 noremap k l
 noremap U u
 
-" Tab manipulation
+" Tab switching
 " Normal mode
 nnoremap gk gt
 nnoremap gh gT
@@ -99,7 +133,7 @@ nnoremap <leader>tc :tabclose<CR>
 nnoremap <leader>vs :vsplit<space>
 nnoremap <leader>hs :split<space>
 
-" Exit commands
+" Basic commands
 " All modes
 noremap W :w<CR>
 noremap SQ :q!<CR>
@@ -116,7 +150,7 @@ noremap <M-p> <C-w>+
 noremap <M-o> <C-w>-
 noremap <M-=> <C-w>=
 
-" Window orientation
+" Window orientation (Mainly for use with vim terminal)
 function! Halign()
   if &filetype == ''
     wincmd J
