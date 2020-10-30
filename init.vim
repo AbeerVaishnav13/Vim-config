@@ -14,9 +14,6 @@ syntax on
 " file encoding
 set encoding=utf8
 
-" Highlight search keyword: OFF
-set nohlsearch
-
 " Set scroll offset
 set scrolloff=10
 
@@ -67,8 +64,8 @@ endif
 
 " Key bindings
 " For remapping escape key to provide greater access
-nnoremap <C-c> <Esc>
-vnoremap <C-c> <Esc>
+nnoremap <silent><C-c> <Esc>:noh<CR>
+vnoremap <silent><C-c> <Esc>:noh<CR>
 snoremap <C-c> <Esc>
 inoremap <C-c> <Esc>
 nnoremap <Esc> <C-c>
