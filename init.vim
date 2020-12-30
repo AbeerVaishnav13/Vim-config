@@ -11,9 +11,6 @@ set smartindent
 " Syntax check: ON
 syntax on
 
-" file encoding
-set encoding=utf8
-
 " Set scroll offset
 set scrolloff=10
 
@@ -44,7 +41,17 @@ set t_ut=
 let mapleader=" "
 
 " Clear all registers
-command! WipeRegs let regs='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-*+"' | let i=0 | while (i < strlen(regs)) | exec 'let @'.regs[i].'=""' | let i=i+1 | endwhile | unlet regs
+function! WR()
+  let regs='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-*+"'
+  let i=0
+  while (i < strlen(regs))
+    exec 'let @'.regs[i].'=""'
+    let i=i+1
+  endwhile
+  unlet regs
+endfunction
+
+command! WipeRegs call WR()
 
 " Options for fuzzy search
 set nocompatible	" Limit search to the project dir
@@ -56,11 +63,6 @@ set background=dark
 
 " Edit this part for colorscheme
 colorscheme default
-
-if exists('+termguicolors')
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-endif
 
 " Key bindings
 " For remapping escape key to provide greater access
@@ -172,7 +174,3 @@ endfunction
 
 noremap <leader>k :call Valign()<CR>
 noremap <leader>h :call Halign()<CR>
-
-" Terminal
-noremap <C-t> :vertical term<CR>
-tnoremap <C-q> <C-\><C-n>
