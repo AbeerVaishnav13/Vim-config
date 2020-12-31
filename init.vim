@@ -119,6 +119,9 @@ nnoremap N Nzz
 noremap u k
 noremap k l
 noremap U u
+noremap 8 0
+noremap 9 ^
+noremap 0 $
 
 " Tab switching
 " Normal mode
